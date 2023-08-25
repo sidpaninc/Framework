@@ -29,7 +29,7 @@ public class baseTest{
 	@BeforeTest
 	public void set_up() throws IOException, InterruptedException {
 		readProperties rp= new readProperties();
-			System.out.println("*************This is start of the test case at "+LocalDateTime.now()+"*************");
+			System.out.println("***************This is start of the test case at "+LocalDateTime.now()+"***************");
 			String browser=rp.getBrowser();
 			String url=rp.getUrl();
 			
@@ -55,7 +55,7 @@ public class baseTest{
 	public void tear_down() {
 		//driver.close();
 		driver.quit();
-		System.out.println("*************This is end of the test case at "+LocalDateTime.now()+"*************");
+		System.out.println("***************This is end of the test case at "+LocalDateTime.now()+"***************");
 	}
 	
 	
