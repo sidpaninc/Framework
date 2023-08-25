@@ -18,6 +18,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.asserts.SoftAssert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import utilities.readProperties;
 
 public class baseTest{
 	public static WebDriver driver;
@@ -27,24 +28,24 @@ public class baseTest{
 	
 	@BeforeTest
 	public void set_up() throws IOException, InterruptedException {
-			System.out.println("This is start of the test case at "+LocalDateTime.now());
-			//For windows
-			//reader=new FileReader(System.getProperty("user.dir")+ "\\src\\test\\resources\\configfiles\\config.properties");
-			//For AWS
-			reader=new FileReader(System.getProperty("user.dir")+ "/src/test/resources/configfiles/config.properties");
-			prop.load(reader);
+		readProperties rp= new readProperties();
+			System.out.println("*************This is start of the test case at "+LocalDateTime.now()+"*************");
+			String browser=rp.getBrowser();
+			String url=rp.getUrl();
+			
+			
 		
-		if(prop.getProperty("browser").equalsIgnoreCase("chrome")) {
+		if(browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver= new ChromeDriver();
-			driver.get(prop.getProperty("url"));
+			driver.get(url);
 			driver.manage().window().maximize();
 		}
 			
-		else if(prop.getProperty("browser").equalsIgnoreCase("firefox")) {
+		else if(browser.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver= new FirefoxDriver();
-			driver.get(prop.getProperty("url"));
+			driver.get(url);
 			driver.manage().window().maximize();
 		}
 	}
@@ -54,6 +55,7 @@ public class baseTest{
 	public void tear_down() {
 		//driver.close();
 		driver.quit();
+		System.out.println("*************This is end of the test case at "+LocalDateTime.now()+"*************");
 	}
 	
 	

@@ -67,6 +67,7 @@ public class Methods extends baseTest implements MethodList {
 		}
 	}
 	
+	
 	//Passing Xpath as argument
 	public  WebElement get_element(String xpath) {
 		try {
@@ -79,7 +80,7 @@ public class Methods extends baseTest implements MethodList {
 	}
 	
 	//Passing WebElement as argument
-	public void click_element(WebElement ele) {
+	public  void click_element(WebElement ele) {
 		try {
 			ele.click();
 		} 
@@ -303,7 +304,7 @@ public class Methods extends baseTest implements MethodList {
 				}
 			}
 	
-	//Creating wait with WebDriverWait
+		//Creating wait with WebDriverWait
 		public void set_wait(int second) {
 			wait=new WebDriverWait(driver, Duration.ofSeconds(second));
 			
@@ -315,7 +316,7 @@ public class Methods extends baseTest implements MethodList {
 			return wait;
 		}
 	
-	//Wait for the element to be visible 
+		//Wait for the element to be visible 
 		public void wait_for_element_to_be_visible(WebElement ele,  int second) {
 			 set_wait_time_and_wait(second).until(ExpectedConditions.visibilityOf(ele));
 		}

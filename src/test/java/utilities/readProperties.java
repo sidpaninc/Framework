@@ -6,15 +6,44 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class readProperties {
+	
+	private String browser;
+	private String url;
+	
+	public String getBrowser() {
+		return browser;
+	}
 
-	public static void main(String[] args) {
+	public void setBrowser(String browser) {
+		this.browser = browser;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	
+
+	public void fetchProperty() {
 		 try {
-			FileReader file= new FileReader("C:\\Users\\user\\eclipse-workspace\\automation_framework\\seleniumFramework\\src\\test\\resources\\configfiles\\config.properties");
+			 
+			//For windows
+				//reader=new FileReader(System.getProperty("user.dir")+ "\\src\\test\\resources\\configfiles\\config.properties");
+				//For AWS
+			FileReader file= new FileReader(System.getProperty("user.dir")+ "/src/test/resources/configfiles/config.properties");
 			Properties prop= new Properties();
 			
 			prop.load(file);
-			System.out.println(prop.getProperty("browser"));
-			System.out.println(prop.getProperty("url"));
+			
+			setBrowser(prop.getProperty("browser"));
+			setUrl(prop.getProperty("url"));
+			
+			//System.out.println(prop.getProperty("browser"));
+			//System.out.println(prop.getProperty("url"));
 			
 		 } catch (FileNotFoundException e) {
 			
