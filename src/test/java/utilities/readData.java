@@ -14,17 +14,17 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.testng.annotations.DataProvider;
 
-public class readXLSData {
+public class readData {
 	Method m;
 	
-	String testCaseName=m.getName();
+	String testCaseName="login_test";//m.getName();
 	
 	//Supplying data through an external EXCEL sheet
 	@DataProvider(name="testData")
 	public String[][] getData(Method m) throws EncryptedDocumentException, IOException {
-		String excelSheetName=m.getName();
+		String excelSheetName="login_test";//m.getName();
 		
-		File f=new File(System.getProperty("user.dir")+"/src/test/resources/testdata/testdata.xlsx");
+		File f=new File(System.getProperty("user.dir")+"\\src\\test\\resources\\testdata\\testdata.xlsx");
 		FileInputStream fis=new FileInputStream(f);
 		Workbook wb= WorkbookFactory.create(fis);
 		Sheet sheetName= wb.getSheet(excelSheetName);
@@ -49,15 +49,13 @@ public class readXLSData {
 		return testData;
 	}
 	
-	//Supplying data using Data provider in testNG
-	@DataProvider(name="testData1")
-	public Object[][] dataset1() {
-		return new Object[][] {
-			{"username1","password1"},
-			{"username2","password2"},
-			{"username3","password3"}
-			};
-		}
+	
+	
+	public static void main(String[] args) throws EncryptedDocumentException, IOException {
+		readData rd=new readData();
+		rd.getData(null);
+	}
+	
 	}
 
 

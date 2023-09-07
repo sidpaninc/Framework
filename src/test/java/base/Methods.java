@@ -540,6 +540,7 @@ public class Methods extends baseTest implements MethodList {
 		
 		public void select_by_visible_text(String xpath, String text) {
 			select_element(xpath).selectByVisibleText(text);
+			
 		}
 		
 		//Choosing value from a drop down by value
@@ -558,6 +559,11 @@ public class Methods extends baseTest implements MethodList {
 
 		public void select_by_index(WebElement ele, int index) {
 			select_element(ele).selectByIndex(index);
+		}
+		
+		// Choosing value from a drop down by visible text
+		public void select_by_visible_text(WebElement ele, String value) {
+			select_element(ele).selectByVisibleText(value);
 		}
 		
 		// Get the text of a selected option 

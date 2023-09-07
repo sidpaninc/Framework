@@ -7,52 +7,26 @@ import java.util.Properties;
 
 public class readProperties {
 	
+	public Properties getProperties() throws IOException {
+		FileReader file= new FileReader(System.getProperty("user.dir")+ "/src/test/resources/configfiles/config.properties");
+		Properties prop= new Properties();
+		prop.load(file);
+		return prop;
+	} 
+	
 	private String browser;
 	private String url;
 	
-	public String getBrowser() {
+	public String getBrowser() throws IOException {
+		Properties prop=getProperties();
+		this.browser=prop.getProperty("browser");
 		return browser;
 	}
 
-	public void setBrowser(String browser) {
-		this.browser = browser;
-	}
-
-	public String getUrl() {
+	public String getUrl() throws IOException {
+		Properties prop= getProperties();
+		this.url=prop.getProperty("url");
 		return url;
 	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
 	
-
-	public void fetchProperty() {
-		 try {
-			 
-			//For windows
-				//reader=new FileReader(System.getProperty("user.dir")+ "\\src\\test\\resources\\configfiles\\config.properties");
-				//For AWS
-			FileReader file= new FileReader(System.getProperty("user.dir")+ "/src/test/resources/configfiles/config.properties");
-			Properties prop= new Properties();
-			
-			prop.load(file);
-			
-			setBrowser(prop.getProperty("browser"));
-			setUrl(prop.getProperty("url"));
-			
-			//System.out.println(prop.getProperty("browser"));
-			//System.out.println(prop.getProperty("url"));
-			
-		 } catch (FileNotFoundException e) {
-			
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 
-	}
-
 }

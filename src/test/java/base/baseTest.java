@@ -14,50 +14,50 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.asserts.SoftAssert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utilities.readProperties;
 
-public class baseTest{
+public class baseTest {
 	public static WebDriver driver;
-	public static Properties prop=new Properties();
-	public static FileReader reader;
-	LocalDateTime myObj ;
-	
+	public static Properties prop = new Properties();
+	readProperties rp = new readProperties();
+	LocalDateTime myObj;
+
 	@BeforeTest
 	public void set_up() throws IOException, InterruptedException {
-		readProperties rp= new readProperties();
-			System.out.println("***************This is start of the test case at "+LocalDateTime.now()+"***************");
-			String browser=rp.getBrowser();
-			String url=rp.getUrl();
-			
-			
-		
-		if(browser.equalsIgnoreCase("chrome")) {
+
+		System.out
+				.println("***************This is start of the test case at " + LocalDateTime.now() + "***************");
+
+		final String browser = rp.getBrowser();
+		final String url = rp.getUrl();
+
+		if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			driver= new ChromeDriver();
+			driver = new ChromeDriver();
 			driver.get(url);
 			driver.manage().window().maximize();
 		}
-			
-		else if(browser.equalsIgnoreCase("firefox")) {
+
+		else if (browser.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
-			driver= new FirefoxDriver();
+			driver = new FirefoxDriver();
 			driver.get(url);
 			driver.manage().window().maximize();
 		}
 	}
 	
 	
+
 	@AfterTest
 	public void tear_down() {
-		//driver.close();
+		// driver.close();
 		driver.quit();
-		System.out.println("***************This is end of the test case at "+LocalDateTime.now()+"***************");
+		System.out.println("***************This is end of the test case at " + LocalDateTime.now() + "***************");
 	}
-	
-	
 
 }
