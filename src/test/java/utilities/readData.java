@@ -16,19 +16,17 @@ import org.testng.annotations.DataProvider;
 
 public class readData {
 	Method m;
-	
-	String testCaseName="login_test";//m.getName();
+	String testCaseName=m.getName();
 	
 	//Supplying data through an external EXCEL sheet
 	@DataProvider(name="testData")
 	public String[][] getData(Method m) throws EncryptedDocumentException, IOException {
-		String excelSheetName="login_test";//m.getName();
+		String excelSheetName=m.getName();
 		
 		File f=new File(System.getProperty("user.dir")+"\\src\\test\\resources\\testdata\\testdata.xlsx");
 		FileInputStream fis=new FileInputStream(f);
 		Workbook wb= WorkbookFactory.create(fis);
 		Sheet sheetName= wb.getSheet(excelSheetName);
-		
 		int totalRows=sheetName.getLastRowNum();
 		System.out.println(totalRows);
 		Row rowCells=sheetName.getRow(0);
@@ -48,8 +46,6 @@ public class readData {
 		}
 		return testData;
 	}
-	
-	
 	
 	public static void main(String[] args) throws EncryptedDocumentException, IOException {
 		readData rd=new readData();

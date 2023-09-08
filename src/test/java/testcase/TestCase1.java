@@ -26,7 +26,7 @@ public class TestCase1 extends baseTest {
 			SoftAssert sa=new SoftAssert();
 			
 			
-			Thread.sleep(3000);
+			m.set_wait_time_and_wait(3);
 			
 			//Finding username & sending value
 			if (m.check_if_available(x.username)) {
@@ -83,7 +83,7 @@ public class TestCase1 extends baseTest {
 				Reporter.log("Logged out!!");
 			}
 		} 
-		catch (InterruptedException e) {
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		
