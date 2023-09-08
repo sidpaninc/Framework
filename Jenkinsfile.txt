@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('GIT build'){
+            steps {
+            git credentialsId: '8a548cbd-a866-4f12-aa44-beb6d0adf2fc', poll: false, url: 'https://github.com/sidpaninc/Framework.git'
+        
+            }
+            }
+        stage('Run test case'){
+            steps {
+            
+            bat 'mvn clean test'
+        
+            }
+        }
+        stage('Send email'){
+            steps {
+            mail bcc: '', body: '''Hello,
+
+Greetings,
+SidPanInc''', cc: 'tunasid@gmail.com', from: '', replyTo: '', subject: 'This is from Pipelined Execution', to: 'sidd.vssut.519@gmail.com'
+        
+            }
+            }
+    }
+}
